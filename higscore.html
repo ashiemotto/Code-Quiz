@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>High Scores</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">    
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Javascript Quiz</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Go back</a>
+              </li>
+            </ul>
+            <span class="navbar-text2">
+             Here are your High Scores
+            </span>
+          </div>
+        </div>
+      </nav>
+
+<main>
+    <div id="submition">
+        <form>
+            <label for="name">First name:</label><br>
+            <input type="text" id="name" name="name" placeholder="enter name"><br>
+          </form>
+          <button id = "submit-score">Submit</button>
+          <button id = "clear-score" >Clear Scores</button>
+    </div>
+
+    <div id="score-sheet">
+
+    </div>
+</main>
+<script src="./assets/script/scores.js"></script>
+</body>
+
+</html>
