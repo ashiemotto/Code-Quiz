@@ -1,26 +1,40 @@
 var timerEl = document.querySelector('.navbar-text');
 var start = document.querySelector("#startGame");
-var button1 = document.querySelector("#c1");
-var button2 = document.querySelector("#c2");
-var button3 = document.querySelector("#c3");
-var button4 = document.querySelector("#c4");
-var question = document.querySelector("#page-one")
-
+var page = document.querySelector("#page-one")
+var b1 = document.querySelector("#c1")
+var b2 = document.querySelector("#c2")
+var b3 = document.querySelector("#c3")
+var b4 = document.querySelector("#c4")
+var question = 0;
+var score = 0;
 
 // set question arrays and and answers 
-// set answers array
 
-var questions =["For loops are often used for?","A variable can be declared","objects can store?","the key word this refers to ","this symbol % returns?"]
-var choices1 = ["iterate over arrays" , "multiplies numbers", "performs a fuction once" , "not used at all"];
-var answers1 = "iterate over arrays";
-var choices2 = ["locally" , "globally" , "both" , "independently"];
-var answer2 = "locally";
-var choices3 = ["strings" , "booleans" ,"numbers" , "all of this and more."];
-var answer3 = "strings";
-var choices4 = ["the global object" , "the parent object" , "doesn't do anything" , "can only be used inside an object "];
-var answer4 = "the global object"
-var choices5 = ["true and false" , "the total sum of an equation" , "the remainder between two numbers" , "compaires equality"];
-var answer5 = "the total sum of an equation"
+var questions =[
+  {
+    q1:"For loops are often used for?",
+    choices1 : ["iterate over arrays" , "multiplies numbers", "performs a fuction once" , "not used at all"],
+    answers1 : "iterate over arrays"
+  },
+{
+    q2:"A variable can be declared",
+    choices2 : ["locally" , "globally" , "both" , "independently"],
+    answer2 : "locally"
+  },
+{
+    q3:"objects can store?",
+    choices3 : ["strings" , "booleans" ,"numbers" , "all of this and more."],
+    answer3 : "strings"
+  },
+{
+    q4:"the key word this refers to ",
+    choices4 : ["the global object" , "the parent object" , "doesn't do anything" , "can only be used inside an object "],
+    answer4 : "the global object"
+  },
+{
+    q5:"this symbol % returns?",
+    choices5 : ["true and false" , "the total sum of an equation" , "the remainder between two numbers" , "compaires equality"],
+    answer5 : "the total sum of an equation"}];
 
 
 // create timer
@@ -42,12 +56,31 @@ var timeInterval = setInterval(function () {
 
  start.addEventListener("click", function(){
     countdown ();
+    game()
     start.disabled = true;
+    page.textContent = ""
 });
 
 function game (){
-   
-    button1.push(choices1[0]);
+b1.hidden = false
+b2.hidden = false
+b3.hidden = false
+b4.hidden = false
 
+start .hidden = true
+if (question === questions.length){
+  endGame()
 }
-game()
+  else {
+    page.textContent= questions[question][q1]
+    b1.textContent = questions[question]["choices1"][0];
+    b2.textContent = questions[question]["choices1"][1]
+    b3.textContent = questions[question]["choices1"][2]
+    b4.textContent = questions[question]["choices1"][3]
+  }
+}
+
+function endGame (){
+  var finished = document.createElement("button")
+  finished.addEventListener("click", )
+}
