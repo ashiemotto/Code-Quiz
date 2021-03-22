@@ -1,11 +1,15 @@
 var timerEl = document.querySelector('.navbar-text');
-var start = document.querySelector("#startGame");
-var page = document.querySelector("#page-one")
-var b1 = document.querySelector("#c1")
-var b2 = document.querySelector("#c2")
-var b3 = document.querySelector("#c3")
-var b4 = document.querySelector("#c4")
-var question = 0;
+var start = document.getElementById("startGame");
+var page = document.getElementById("page-one")
+var b1 = document.getElementById("c1")
+var b2 = document.getElementById("c2")
+var b3 = document.getElementById("c3")
+var b4 = document.getElementById("c4")
+var newQuest = document.getElementById('message')
+var gameQuest = document.getElementById('gameQuestion')
+var message = document.getElementById('correctWrong')
+var i = 0;
+var time = 50;
 var score = 0;
 
 // set question arrays and and answers 
@@ -13,28 +17,28 @@ var score = 0;
 var questions =[
   {
     q1:"For loops are often used for?",
-    choices1 : ["iterate over arrays" , "multiplies numbers", "performs a fuction once" , "not used at all"],
-    answers1 : "iterate over arrays"
+    choices : ["iterate over arrays" , "multiplies numbers", "performs a fuction once" , "not used at all"],
+    answers : "iterate over arrays"
   },
 {
-    q2:"A variable can be declared",
-    choices2 : ["locally" , "globally" , "both" , "independently"],
-    answer2 : "locally"
+    q1:"A variable can be declared",
+    choices : ["locally" , "globally" , "both" , "independently"],
+    answer : "locally"
   },
 {
-    q3:"objects can store?",
-    choices3 : ["strings" , "booleans" ,"numbers" , "all of this and more."],
-    answer3 : "strings"
+    q1:"objects can store?",
+    choices : ["strings" , "booleans" ,"numbers" , "all of this and more."],
+    answer : "strings"
   },
 {
-    q4:"the key word this refers to ",
-    choices4 : ["the global object" , "the parent object" , "doesn't do anything" , "can only be used inside an object "],
-    answer4 : "the global object"
+    q1:"the key word this refers to ",
+    choices : ["the global object" , "the parent object" , "doesn't do anything" , "can only be used inside an object "],
+    answer : "the global object"
   },
 {
-    q5:"this symbol % returns?",
-    choices5 : ["true and false" , "the total sum of an equation" , "the remainder between two numbers" , "compaires equality"],
-    answer5 : "the total sum of an equation"}];
+    q1:"this symbol % returns?",
+    choices : ["true and false" , "the total sum of an equation" , "the remainder between two numbers" , "compaires equality"],
+    answer : "the total sum of an equation"}];
 
 
 // create timer
@@ -48,8 +52,12 @@ var timeInterval = setInterval(function () {
     if (timeLeft=== 0){
       clearInterval(timeInterval);
       timerEl.textContent = "Times Up"
-      displayMessage();
+    
     }
+    else if (i === questions.length){
+      clearInterval(timeInterval);
+    } 
+    
    },1000);
    console.log(timeLeft);
  }
@@ -58,29 +66,83 @@ var timeInterval = setInterval(function () {
     countdown ();
     game()
     start.disabled = true;
-    page.textContent = ""
+    
 });
 
+// start game
 function game (){
-b1.hidden = false
-b2.hidden = false
-b3.hidden = false
-b4.hidden = false
+b1.hidden = false;
+b2.hidden = false;
+b3.hidden = false;
+b4.hidden = false;
 
-start .hidden = true
-if (question === questions.length){
+start .hidden = true;
+newQuest.hidden = true;
+
+if (i === questions.length){
   endGame()
 }
   else {
-    page.textContent= questions[question][q1]
-    b1.textContent = questions[question]["choices1"][0];
-    b2.textContent = questions[question]["choices1"][1]
-    b3.textContent = questions[question]["choices1"][2]
-    b4.textContent = questions[question]["choices1"][3]
+   gameQuest.textContent = questions[i]["q1"];
+    b1.textContent = questions[i]["choices"][0];
+    b2.textContent = questions[i]["choices"][1];
+    b3.textContent = questions[i]["choices"][2];
+    b4.textContent = questions[i]["choices"][3];
   }
 }
 
 function endGame (){
   var finished = document.createElement("button")
   finished.addEventListener("click", )
+  b1.remove();
+  b2.remove();
+  b3.remove();
+  b4.remove();
 }
+
+// game 
+
+b1.addEventListener('click',function(){
+if (questions[i]["choices"][0] === questions[i]['answers']){
+  message.textContent = "correct";
+}
+else{
+  message.textContent = "wrong";
+  time -=10
+}
+i++
+game();
+})
+b2.addEventListener('click',function(){
+  if (questions[question]["choices"][1] === questions[i]['answers']){
+    message.textContent = "correct";
+  }
+  else{
+    message.textContent = "wrong";
+    time-=10
+  }
+  i++
+game();
+})
+  b3.addEventListener('click',function(){
+    if (is[i]["choices"][2] === questions[i]['answers']){
+      message.textContent = "correct";
+    }
+    else{
+      message.textContent = "wrong";
+      time-=10
+    }
+    i++
+game();
+})
+    b4.addEventListener('click',function(){
+      if (is[i]["choices"][3] === questions[i]['answers']){
+        message.textContent = "correct";
+      }
+      else{
+        message.textContent = "wrong";
+        time-=10
+      }
+      i++
+game();
+})
