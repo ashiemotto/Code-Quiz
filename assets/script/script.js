@@ -8,9 +8,11 @@ var b4 = document.getElementById("c4")
 var newQuest = document.getElementById('message')
 var gameQuest = document.getElementById('gameQuestion')
 var message = document.getElementById('correctWrong')
+
 var i = 0;
 var time = 50;
 var score = 0;
+var highscore = [];
 
 // set question arrays and and answers 
 
@@ -38,7 +40,8 @@ var questions =[
 {
     q1:"this symbol % returns?",
     choices : ["true and false" , "the total sum of an equation" , "the remainder between two numbers" , "compaires equality"],
-    answer : "the total sum of an equation"}];
+    answer : "the total sum of an equation"}
+  ];
 
 
 // create timer
@@ -52,6 +55,7 @@ var timeInterval = setInterval(function () {
     if (timeLeft=== 0){
       clearInterval(timeInterval);
       timerEl.textContent = "Times Up"
+      endGame()
     
     }
     else if (i === questions.length){
@@ -76,6 +80,7 @@ b2.hidden = false;
 b3.hidden = false;
 b4.hidden = false;
 
+
 start .hidden = true;
 newQuest.hidden = true;
 
@@ -92,19 +97,30 @@ if (i === questions.length){
 }
 
 function endGame (){
-  var finished = document.createElement("button")
-  finished.addEventListener("click", )
+  gameQuest.textContent = "Thanks for taking quiz"
   b1.remove();
   b2.remove();
   b3.remove();
   b4.remove();
+  message.textContent = 'your score '+ score;
+  localStorage.setItem("score",score);
+  var finished = document.createElement("button")
+  finished.innerHTML = 'Finished'
+  document.body.appendChild(finished);
+
+  finished.addEventListener('click', function(){
+  window.location.href = 'higscore.html'
+  })
+
+
 }
 
 // game 
 
 b1.addEventListener('click',function(){
-if (questions[i]["choices"][0] === questions[i]['answers']){
+if (questions[i]["choices"][0] === questions[i]['answer']){
   message.textContent = "correct";
+  score++
 }
 else{
   message.textContent = "wrong";
@@ -114,8 +130,9 @@ i++
 game();
 })
 b2.addEventListener('click',function(){
-  if (questions[question]["choices"][1] === questions[i]['answers']){
+  if (questions[i]["choices"][1] === questions[i]['answer']){
     message.textContent = "correct";
+    score++
   }
   else{
     message.textContent = "wrong";
@@ -125,8 +142,9 @@ b2.addEventListener('click',function(){
 game();
 })
   b3.addEventListener('click',function(){
-    if (is[i]["choices"][2] === questions[i]['answers']){
+    if (questions[i]["choices"][2] === questions[i]['answer']){
       message.textContent = "correct";
+      score++
     }
     else{
       message.textContent = "wrong";
@@ -136,8 +154,9 @@ game();
 game();
 })
     b4.addEventListener('click',function(){
-      if (is[i]["choices"][3] === questions[i]['answers']){
+      if (questions[i]["choices"][3] === questions[i]['answer']){
         message.textContent = "correct";
+        score++
       }
       else{
         message.textContent = "wrong";
@@ -146,3 +165,10 @@ game();
       i++
 game();
 })
+console.log(score)
+
+
+
+
+
+
